@@ -45,24 +45,37 @@ class Product extends Model
     public function scopeFilter($query, array $filters)
     {
 
-         $query->when($filters['search'] ?? false, fn ($query, $search)=>
-            $query->where(fn($query)=>
-                $query->where('name', 'like', '%' . $search. '%')));
+         $query->when(
+            $filters['search'] ?? false,
+            fn ($query, $search) => $query->where(
+                fn($query) => $query->where('name', 'like', '%' . $search. '%')
+            )
+         );
 
-        $query->when($filters['category'] ?? false, fn ($query, $category)=>
-            $query->whereHas('category', fn($query) =>
-                $query->where('category_id', $category)));
+        $query->when(
+            $filters['category'] ?? false,
+            fn ($query, $category) => $query->whereHas(
+                'category',
+                fn($query) => $query->where('category_id', $category)
+            )
+        );
 
-        $query->when($filters['max'] ?? false, fn ($query)=>
-            $query->where(fn($query) =>
-                $query->where('price', '>', 400)));
+        $query->when(
+            $filters['minprice'] ?? false,
+            fn ($query, $minPrice) => $query->where('price', '>=', $minPrice)
+        );
+
+        $query->when(
+            $filters['maxprice'] ?? false,
+            fn ($query, $maxPrice) => $query->where('price', '<=', $maxPrice)
+        );
 
 
     }
 
 
 
-    public function category() 
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }

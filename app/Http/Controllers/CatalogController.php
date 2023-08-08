@@ -10,14 +10,19 @@ class CatalogController extends Controller
 {
     public function index(Request $request)
     {
-        $hiddenInputs = $request->except('search');
+        $hiddenInputs = $request->except('search', 'minprice', 'maxprice');
+
+        if ($request->has('minprice')) {
+            $hiddenPricesInputs = $request->only('minprice', 'maxprice');
+        }
 
         return view('catalog', [
             'hiddenInputs' => $hiddenInputs,
+            'hiddenPricesInputs' => $hiddenPricesInputs ?? [],
             'categories' => Category::all(),
             'products' => Product::latest()
                 ->filter(
-                    request(['search', 'category', 'max'])
+                    $request->all()
                 )
                 ->paginate(6)
                 ->withQueryString(),
