@@ -33,27 +33,6 @@ class Category extends Model
 
     protected $guarded = [];
 
- public function scopeFilter($query, array $filters)
-    {
-
-         $query->when($filters['search'] ?? false, fn ($query, $search)=>
-            $query->where(fn($query)=>
-                $query->where('name', 'like', '%' . $search. '%')));
-
-        $query->when($filters['category'] ?? false, fn ($query, $category)=>
-            $query->whereHas('category', fn($query) =>
-                $query->where('category_id', $category)));
-
-        $query->when($filters['m'] ?? false, fn ($query, $author)=>
-            $query->whereHas('maxprice', fn($query) =>
-                $query->where('price', '<', 500)));
-
-
-    }
- 
- 
- 
- 
     public function product()
     {
         return $this->hasMany(Product::class);

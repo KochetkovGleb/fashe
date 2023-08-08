@@ -25,6 +25,10 @@
                                 <input type="hidden" name="{{ $name }}" value="{{ $value }}">
                             @endforeach
 
+                            @foreach($hiddenPricesInputs as $name => $value)
+                                <input type="hidden" name="{{ $name }}" value="{{ $value }}">
+                            @endforeach
+
                             <input type="text"
                                    name="search"
                                    placeholder="Search Products"
@@ -55,6 +59,10 @@
                                         @foreach($hiddenInputs as $name => $value)
                                             <input type="hidden" name="{{ $name }}" value="{{ $value }}">
                                         @endforeach
+
+                                        @if (request()->has('search'))
+                                            <input type="hidden" name="search" value="{{ request('search') }}">
+                                        @endif
 
                                         <input type="number"
                                                name="minprice"
