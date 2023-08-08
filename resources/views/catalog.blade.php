@@ -10,12 +10,16 @@
                     </div>
                     @foreach ($categories as $category)
                         <div class="mt-2">
-                            <a href="/catalog?category={{ $category->id }}&{{ http_build_query(request()->except('category', 'page',)) }}">{{ $category->name }}</a>
+{{--                            @if (http_build_query(request()->except('category', 'page',)))--}}
+{{--                                <a href="/catalog?category={{ $category->id }}&{{ http_build_query(request()->except('category', 'page',)) }}">{{ $category->name }}</a>--}}
+{{--                            @else--}}
+                                <a href="/catalog?category={{ $category->id }}">{{ $category->name }}</a>
+{{--                            @endif--}}
                         </div>
                     @endforeach
                     {{-- search --}}
                     <div class="mt-10">
-                        <form method="GET" action="/catalog">
+                        <form method="GET" action="/catalog" class="flex">
 
                             @foreach($hiddenInputs as $name => $value)
                                 <input type="hidden" name="{{ $name }}" value="{{ $value }}">
@@ -24,8 +28,14 @@
                             <input type="text"
                                    name="search"
                                    placeholder="Search Products"
-                                   class="s-text7 size6 p-l-23 p-r-50 border-2"
-                                   value="{{ request('search') }}">
+                                   class="s-text7 size6 p-l-23 p-r-50 border-2 mr-5"
+                                   value="{{ request('search') }}"
+                            >
+
+                            <input type="submit"
+                                   class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer"
+                                   value="Искать!"
+                            >
                         </form>
 
                     </div>
@@ -45,26 +55,24 @@
                                         @foreach($hiddenInputs as $name => $value)
                                             <input type="hidden" name="{{ $name }}" value="{{ $value }}">
                                         @endforeach
-            
+
                                         <input type="number"
                                                name="minprice"
                                                placeholder="minprice"
                                                class="s-text7 size6 p-l-23 p-r-50 border-2"
                                                value="{{ request('minprice') }}">
-                                    </form>
-                                </div>
-                                <div class="">
-                                    <form method="GET" action="/catalog">
 
-                                        @foreach($hiddenInputs as $name => $value)
-                                            <input type="hidden" name="{{ $name }}" value="{{ $value }}">
-                                        @endforeach
-            
                                         <input type="number"
                                                name="maxprice"
                                                placeholder="maxprice"
                                                class="s-text7 size6 p-l-23 p-r-50 border-2"
                                                value="{{ request('maxprice') }}">
+
+                                        <input type="submit"
+                                               class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded cursor-pointer"
+                                               value="Применить"
+                                        >
+
                                     </form>
                                 </div>
                             </div>

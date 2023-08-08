@@ -10,7 +10,7 @@ class CatalogController extends Controller
 {
     public function index(Request $request)
     {
-        $hiddenInputs = $request->except('search');
+        $hiddenInputs = $request->except('search', 'minprice', 'maxprice');
 
         return view('catalog', [
             'hiddenInputs' => $hiddenInputs,
