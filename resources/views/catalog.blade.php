@@ -50,7 +50,7 @@
             {{-- Right Side --}}
             <div class="border-black border-opacity-0 col-span-3 row-span-1">
                 <div class="grid grid-cols-3">
-                    <div class="py-6 px-5 h-full col-span-3">
+                    <div class="py-4 px-5 h-full col-span-3">
                         <div class="flex justify-between">
                             <div class="flex items-center">
                                 <div>
@@ -84,12 +84,6 @@
                                     </form>
                                 </div>
                             </div>
-
-
-
-                            <div class="mt-8 md:mt-0 flex items-center pr-6">
-                                <p>Showing 1–12 of 16 results</p>
-                            </div>
                         </div>
                     </div>
                     @foreach ($products as $product)
@@ -112,8 +106,8 @@
 
                     {{-- Pagination --}}
                     <div class="py-6 px-5 h-full col-span-3">
-                        <div class="mt-8 md:mt-0 flex items-center pr-6">
-                            <p>Pagination</p>
+                        <div>
+                            {{ $products->onEachSide(1)->links() }}
                         </div>
 
                     </div>
