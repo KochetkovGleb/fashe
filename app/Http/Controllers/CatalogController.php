@@ -25,7 +25,7 @@ class CatalogController extends Controller
                     $request->all()
                 )
                 ->paginate(6)
-                ->withQueryString(),
+                ->withQueryString()
         ]);
     }
 }
