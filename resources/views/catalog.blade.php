@@ -10,11 +10,7 @@
                     </div>
                     @foreach ($categories as $category)
                         <div class="mt-2">
-{{--                            @if (http_build_query(request()->except('category', 'page',)))--}}
-{{--                                <a href="/catalog?category={{ $category->id }}&{{ http_build_query(request()->except('category', 'page',)) }}">{{ $category->name }}</a>--}}
-{{--                            @else--}}
-                                <a href="/catalog?category={{ $category->id }}">{{ $category->name }}</a>
-{{--                            @endif--}}
+                            <a href="/catalog?category={{ $category->id }}">{{ $category->name }}</a>
                         </div>
                     @endforeach
                     {{-- search --}}
