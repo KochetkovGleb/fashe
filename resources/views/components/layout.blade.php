@@ -22,16 +22,16 @@
         <nav class="md:flex md:justify-between md:items-center">
             <div class="flex items-center">
                 <a href="/">
-                    <img src="/images/facebookIcon.png" alt="facebook" width="30" height="5">  
-                </a>            
-                <a href="/" class="ml-1">
-                    <img src="/images/twitterIcon.png" alt="twitter" width="30" height="5">  
+                    <img src="/images/facebookIcon.png" alt="facebook" width="30" height="5">
                 </a>
                 <a href="/" class="ml-1">
-                    <img src="/images/instagramIcon.png" alt="twitter" width="30" height="5">  
+                    <img src="/images/twitterIcon.png" alt="twitter" width="30" height="5">
                 </a>
-            </div>    
-                
+                <a href="/" class="ml-1">
+                    <img src="/images/instagramIcon.png" alt="twitter" width="30" height="5">
+                </a>
+            </div>
+
 
             <div>
                 <a href="/">
@@ -40,14 +40,26 @@
             </div>
 
             <div class="mt-8 md:mt-0 flex items-center pr-6">
-                <p>Authentification</p>
+                @if (Route::has('login'))
+                    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                        @auth
+                            <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Account</a>
+                        @else
+                            <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                            @endif
+                        @endauth
+                    </div>
+                @endif
             </div>
         </nav>
 
         {{-- menu --}}
 
         <nav class="md:flex md:justify-center">
-            
+
                 <div class="mt-5">
                    <a href="/">Home</a>
                 </div>
@@ -60,8 +72,8 @@
                 <div class="ml-10 mt-5">
                     <a href="/">Contacts</a>
                 </div>
-             
-        
+
+
             </nav>
 
         {{ $slot }}
