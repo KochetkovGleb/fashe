@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SiteController;
@@ -23,5 +24,7 @@ Route::get('/product/{product}', [ProductController::class, 'show'])->name('prod
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
 
 require __DIR__.'/auth.php';
