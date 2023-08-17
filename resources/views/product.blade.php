@@ -14,14 +14,35 @@
                     <p>{{ $product->price }}</p>
                 </div>
                 <div class="mt-5">
-                    <p>Хотите наслаждаться изысканным ароматом и густой пенкой любимого кофе из свежемолотых зерен? Кофе-машины Miele — для вас... Какую бы машину вы ни выбрали, при нажатии одной кнопки у вас будет свежесваренный кофе. Наслаждайтесь любимым сортом кофе, не выходя из дома. Идеально и просто...</p>
+                    <p>{{ $product->description }}</p>
                 </div>
                 <div class="mt-5">
-                    <button class="bg-yellow-500 hover:bg-red-400 text-white font-bold py-2 px-4 rounded-full">
-                        <a href="/">ADD TO CART</a>
+                    <button class="bg-yellow-500 hover:bg-red-400 text-white font-bold py-2 px-4 rounded-full add-to-cart" id="add-to-cart" data-product-id="{{ $product->id }}">
+                        ADD TO CART
                     </button>
                 </div>
             </div>
         </div>
     </main>
+
+    <script>
+        function addToCart(e) {
+            let target = e.target;
+
+            axios
+                .post('http://127.0.0.1:8000/cart', {
+                    productId: target.dataset.productId
+                })
+                .then(function (response) {
+                    alert(response.data);
+                })
+                .catch(function (err) {
+                    console.log(err);
+                });
+        }
+
+        let addToCartButton = document.getElementById('add-to-cart');
+
+        addToCartButton.addEventListener('click', addToCart);
+    </script>
 </x-layout>

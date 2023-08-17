@@ -1,3 +1,39 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+.cart_table {
+    /*border: 1px solid #000;*/
+    text-align: center;
+    margin: 100px auto 0;
+    width: 70%;
+}
+
+.cart_table th, .cart_table td {
+    /*border: 1px solid #000;*/
+    padding: 10px;
+}
+
+.cart_table_headings {
+    font-size: 13px;
+    color: #555555;
+    line-height: 1.5;
+    text-transform: uppercase;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    width: 70%;
+}
+
+.cart_table tr {
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.cart-product-image {
+    width: 100px;
+}
+
+.cart-total-price-div {
+    margin: 20px auto 0;
+    width: 70%;
+}
