@@ -23,6 +23,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+//        $this->app->bind(SessionCart::class, function ($app) {
+//            return new SessionCart(session());
+//        });
+
+//        resolve(SessionCart::class);
     }
+
 }
