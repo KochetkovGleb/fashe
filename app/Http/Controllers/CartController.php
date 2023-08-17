@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Classes\CartFactory;
-use App\Classes\SessionCart;
 use App\Interfaces\CartInterface;
 use Illuminate\Http\Request;
 
@@ -20,16 +19,20 @@ class CartController extends Controller
 
     public function index()
     {
-        $this->cart->add(3);
-
         $products = $this->cart->getProducts();
 
         return view('cart.index', compact('products'));
     }
 
-    public function store(Request $request, $productId)
+    public function store(Request $request)
     {
+        $productId = $request->get('productId');
 
+        $this->cart->add($productId);
+
+        return 'Success!';
+
+//        return redirect()->route('cart');
     }
 }
 
